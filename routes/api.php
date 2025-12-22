@@ -22,6 +22,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/project/{slug}', [ProjectController::class, 'store']);
     
     // Listar todos os projetos (Dashboard)
-    // Precisamos criar esse método 'index' no Controller depois, mas já deixa a rota
     Route::get('/projects', [ProjectController::class, 'index']);
+
+    // Excluir Projeto (NOVA ROTA)
+    Route::delete('/projects/{id}', [ProjectController::class, 'destroy']);
 });

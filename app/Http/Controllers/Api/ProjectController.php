@@ -45,10 +45,22 @@ class ProjectController extends Controller
         ]);
     }
 
+    // --- NOVA FUNÇÃO DE EXCLUSÃO ---
+    public function destroy($id)
+    {
+        $project = Project::findOrFail($id);
+        $project->delete();
+
+        return response()->json([
+            'message' => 'Projeto excluído com sucesso!'
+        ]);
+    }
+
     public function upload(Request $request)
     {
+        // AUMENTADO PARA 100MB (102400 KB) para suportar vídeos
         $request->validate([
-            'file' => 'required|file|max:10240',
+            'file' => 'required|file|max:1000000',
         ]);
 
         if ($request->hasFile('file')) {
